@@ -1,19 +1,24 @@
-// extract beep times.
-let input = process.argv.slice(2)
-
-// EDGE CASES: 
-// 0 
+// EXTRACT CMD LINE INSTRUCTIONS
+let input = process.argv.slice(2);
+ 
+// 0 EDGE CASE
 if (!input.length) {
-  return ;
+  return;
 }
-
+// STRING TO NUM CONVERSION
 input = input.map(x => Number(x));
-console.log(input);
+
+// NAN
+input = input.filter(term => typeof term === "number");
+
+// NEGATIVE NUM
+input = input.filter(term => term > 0);
+
+// BEEP FN
 for (let element of input) {
   setTimeout(() => {
-    // beeps the sound and queues up them up. 
+    // beeps the sound and queues up them up.
     process.stdout.write('\x07');
-    // console.log(element);
-  }, element * 100)
+  }, element * 100);
   
-};
+}
